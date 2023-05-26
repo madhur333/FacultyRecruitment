@@ -4,6 +4,7 @@ import "./CSS/login.css";
 import Login from "./components/login.js";
 import Register from "./components/signup";
 import Navbar from "./components/navbar";
+import { BrowserRouter as Route, Router, Routes } from "react-router-dom";
 
 export default function App() {
   const [currentForm, setCurrentForm] = useState("login");
@@ -12,7 +13,13 @@ export default function App() {
   };
   return (
     <div className="App">
-      <Navbar />
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<signup />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
 
       {currentForm === "login" ? (
         <Login onFormSwitch={toggleForm} />
